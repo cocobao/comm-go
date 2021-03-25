@@ -3,7 +3,6 @@ package utility
 import (
 	"time"
 
-	"git.qhfct.io/comm-go/log"
 	"github.com/dgrijalva/jwt-go"
 	"gopkg.in/oauth2.v3"
 	"gopkg.in/oauth2.v3/generates"
@@ -36,7 +35,6 @@ func GetAccessToken(userId string, exp time.Duration) string {
 		TokenInfo: m,
 	}, false)
 	if err != nil {
-		log.Error(err)
 		return ""
 	}
 	return access

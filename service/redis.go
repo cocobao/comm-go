@@ -5,7 +5,6 @@ import (
 	"os"
 	"time"
 
-	"github.com/cocobao/comm-go/log"
 	"gopkg.in/redis.v5"
 )
 
@@ -32,6 +31,6 @@ func SetupRedis(addrs []string, pwd string) *redis.ClusterClient {
 		fmt.Println(err, "connect redis server failed!", pong)
 		os.Exit(0)
 	}
-	log.Debug("connect redis success!")
+	fmt.Println("connect redis success!")
 	return redisClient
 }

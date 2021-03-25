@@ -1,4 +1,4 @@
-package utility
+package httpex
 
 import (
 	"bytes"
@@ -18,6 +18,7 @@ import (
 	"time"
 
 	"github.com/cocobao/comm-go/log"
+	"github.com/cocobao/comm-go/utility"
 	"golang.org/x/net/context/ctxhttp"
 )
 
@@ -207,7 +208,7 @@ func GetNetFile(href, savepath string) (string, error) {
 		filePath = path.Join(filePath, ss)
 	}
 
-	if IsExist(filePath) {
+	if utility.IsExist(filePath) {
 		return filePath, nil
 	} else {
 		os.MkdirAll(path.Dir(filePath), os.ModePerm)

@@ -33,5 +33,6 @@ func SetupMgo(DB, addr, username, password string) (*mongo.Client, error) {
 		fmt.Printf("ping to mongo fail, err:%+v\n, addr:%s, username:%s, password:%s\n", err, addr, username, password)
 		return nil, err
 	}
+	fmt.Println("setup mongodb success!")
 	return client, nil
 }

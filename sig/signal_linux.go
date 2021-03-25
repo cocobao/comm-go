@@ -6,7 +6,7 @@ import (
 	"os/signal"
 	"syscall"
 
-	"git.qhfct.io/comm-go/log"
+	"github.com/cocobao/comm-go/log"
 )
 
 type signalHandler func(s os.Signal, arg interface{})
