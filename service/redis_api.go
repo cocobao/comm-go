@@ -15,7 +15,7 @@ func CacheSet(key string, val interface{}, timeOut time.Duration) error {
 
 func CacheGet(key string) (string, error) {
 	if redisClient != nil {
-		redisClient.Get(key).Result()
+		return redisClient.Get(key).Result()
 	}
 	return redisClientCluster.Get(key).Result()
 }
