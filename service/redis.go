@@ -8,11 +8,26 @@ import (
 	"gopkg.in/redis.v5"
 )
 
-var redisClient *redis.ClusterClient
+var (
+	redisClientCluster *redis.ClusterClient
+	redisClient        *redis.Client
+)
+
+func SetupRedis(addrs string) *redis.Client {
+	redisClient = redis.NewClient(&redis.Options{
+		Addr:         addrs + ":6379",
+		DialTimeout:  10 * time.Second,
+		ReadTimeout:  30 * time.Second,
+		WriteTimeout: 30 * time.Second,
+		PoolSize:     10,
+		PoolTimeout:  30 * time.Second,
+	})
+	return redisClient
+}
 
 //链接redis集群
-func SetupRedis(addrs []string, pwd string) *redis.ClusterClient {
-	redisClient = redis.NewClusterClient(&redis.ClusterOptions{
+func SetupRedisCluster(addrs []string, pwd string) *redis.ClusterClient {
+	redisClientCluster = redis.NewClusterClient(&redis.ClusterOptions{
 		Addrs:              addrs,
 		Password:           pwd,
 		MaxRedirects:       16,
@@ -32,5 +47,5 @@ func SetupRedis(addrs []string, pwd string) *redis.ClusterClient {
 		os.Exit(0)
 	}
 	fmt.Println("connect redis success!")
-	return redisClient
+	return redisClientCluster
 }
