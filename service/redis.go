@@ -41,7 +41,7 @@ func SetupRedisCluster(addrs []string, pwd string) *redis.ClusterClient {
 		IdleTimeout:        600 * time.Second,
 		IdleCheckFrequency: 60 * time.Second,
 	})
-	pong, err := redisClient.Ping().Result()
+	pong, err := redisClientCluster.Ping().Result()
 	if err != nil {
 		fmt.Println(err, "connect redis server failed!", pong)
 		os.Exit(0)
