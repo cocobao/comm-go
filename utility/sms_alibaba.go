@@ -37,7 +37,7 @@ func SendSMS(phoneNumber, templateCode, templateParam string) error {
 	}
 
 	if result.IsSuccessful() {
-		fmt.Println("A SMS is sent successfully:", resultJson)
+		fmt.Println("A SMS is sent successfully:", string(resultJson))
 		return nil
 	} else {
 		return fmt.Errorf("Failed to send a SMS:%s", string(resultJson))

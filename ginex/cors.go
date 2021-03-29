@@ -16,6 +16,7 @@ func Cors() gin.HandlerFunc {
 		context.Header("Access-Control-Allow-Credentials", "true")
 		if method == "OPTIONS" {
 			context.AbortWithStatus(http.StatusNoContent)
+			return
 		}
 		context.Next()
 	}
