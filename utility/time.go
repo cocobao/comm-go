@@ -97,3 +97,7 @@ func TimeIntToString(t int64) string {
 func TimeIntSecToTimeStamp(t int64) time.Time {
 	return time.Unix(t, 0)
 }
+
+func WxFormat(t time.Time) string {
+	return t.Format("20060102150405")
+}

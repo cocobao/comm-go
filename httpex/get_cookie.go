@@ -1,6 +1,7 @@
 package httpex
 
 import (
+	"compress/gzip"
 	"context"
 	"crypto/tls"
 	"fmt"
@@ -20,7 +21,11 @@ func GetCookies() []*http.Cookie {
 	return cookies
 }
 
-func GetRequestWithCookies(url string, headEx map[string]string, retHandle func(bd []byte) error) error {
+func AddCookies(c *http.Cookie) {
+	cookies = append(cookies, c)
+}
+
+func GetRequestWithCookies(url string, headEx map[string]string, retHandle func(res *http.Response, bd []byte) error) error {
 	var req *http.Request
 	var res *http.Response
 	var err error
@@ -71,13 +76,27 @@ tryAgain:
 		return err
 	}
 
-	cookies = res.Cookies()
-	log.Debugf("res.Header:%+v", res.Cookies())
-
 	var result []byte
-	result, err = ioutil.ReadAll(res.Body)
-	if err != nil {
-		log.Info(string(result))
+
+	if res.Header.Get("Content-Encoding") == "gzip" {
+		render, err := gzip.NewReader(res.Body)
+		if err != nil {
+			log.Error(err)
+			return err
+		} else {
+			defer render.Close()
+
+			result, err = ioutil.ReadAll(render)
+			if err != nil {
+				log.Error(err)
+				return err
+			}
+		}
+	} else {
+		result, err = ioutil.ReadAll(res.Body)
+		if err != nil {
+			log.Info(string(result))
+		}
 	}
 
 	if res.StatusCode != http.StatusOK {
@@ -85,7 +104,7 @@ tryAgain:
 	}
 
 	if retHandle != nil {
-		return retHandle(result)
+		return retHandle(res, result)
 	}
 
 	return nil
