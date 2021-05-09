@@ -15,7 +15,7 @@ var (
 
 func SetupRedis(addrs string) *redis.Client {
 	redisClient = redis.NewClient(&redis.Options{
-		Addr:         addrs + ":6379",
+		Addr:         addrs,
 		DialTimeout:  10 * time.Second,
 		ReadTimeout:  30 * time.Second,
 		WriteTimeout: 30 * time.Second,
