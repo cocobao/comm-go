@@ -37,13 +37,15 @@ func GinLog(c *gin.Context) {
 		path = path + "?" + raw
 	}
 
-	Debugf("[%s] %v  %3d  %13v | %15s |  %s  %s\n%s",
-		ModelName,
-		end.Format("2006/01/02 - 15:04:05"),
-		statusCode,
-		latency,
-		clientIP,
-		method,
-		path,
-		comment)
+	if method != "OPTIONS" {
+		Debugf("[%s] %v  %3d  %13v | %15s |  %s  %s\n%s",
+			ModelName,
+			end.Format("2006/01/02 - 15:04:05"),
+			statusCode,
+			latency,
+			clientIP,
+			method,
+			path,
+			comment)
+	}
 }

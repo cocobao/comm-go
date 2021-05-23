@@ -11,11 +11,21 @@ var (
 	letterBytes1 = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
 	letterBytes2 = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 	letterBytes3 = []rune("1234567890")
+	letterBytes4 = []rune("ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890")
 )
 
 func GetRandNumCode6() string {
 	rnd := rand.New(rand.NewSource(time.Now().UnixNano()))
 	return fmt.Sprintf("%06v", rnd.Int31n(1000000))
+}
+
+func RandString4(n int) string {
+	rand.Seed(time.Now().UnixNano())
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letterBytes4[rand.Intn(len(letterBytes4))]
+	}
+	return string(b)
 }
 
 func RandString0(n int) string {

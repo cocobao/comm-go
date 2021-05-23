@@ -6,6 +6,10 @@ import (
 	"gopkg.in/redis.v5"
 )
 
+func ClearCache() {
+	redisClient.FlushAll()
+}
+
 func CacheSet(key string, val interface{}, timeOut time.Duration) error {
 	if redisClient != nil {
 		return redisClient.Set(key, val, timeOut).Err()
