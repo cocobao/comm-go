@@ -7,7 +7,10 @@ import (
 )
 
 func ClearCache() {
-	redisClient.FlushAll()
+	if redisClient != nil {
+		redisClient.FlushAll()
+	}
+	redisClientCluster.FlushAll()
 }
 
 func CacheSet(key string, val interface{}, timeOut time.Duration) error {
