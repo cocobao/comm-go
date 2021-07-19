@@ -78,20 +78,29 @@ func Xsfr(ctx *gin.Context) {
 		}
 	}
 
+	var accesstoken string
 	//从http头部获取token信息
 	Bearer := ctx.Request.Header.Get("Authorization")
-	if strings.Index(Bearer, "Bearer") < 0 {
-		log.Error("invalid Bearer:", Bearer)
-		ctx.AbortWithStatus(405)
-		return
+	if Bearer != "" {
+		if strings.Index(Bearer, "Bearer") < 0 {
+			log.Error("invalid Bearer:", Bearer)
+			ctx.AbortWithStatus(405)
+			return
+		}
+
+		auths := strings.Split(Bearer, " ")
+		if len(auths) > 1 {
+			accesstoken = auths[1]
+		} else {
+			log.Error("invalid Bearer:", Bearer)
+			ctx.AbortWithStatus(405)
+			return
+		}
+	} else {
+		accesstoken = ctx.Query("accesstoken")
 	}
 
-	auths := strings.Split(Bearer, " ")
-	var accesstoken string
-	if len(auths) > 1 {
-		accesstoken = auths[1]
-	} else {
-		log.Error("invalid Bearer:", Bearer)
+	if accesstoken == "" {
 		ctx.AbortWithStatus(405)
 		return
 	}

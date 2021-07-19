@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/cocobao/comm-go/log"
 	"github.com/gin-gonic/gin"
 )
 
@@ -21,6 +22,7 @@ const (
 	ERROR_STATUS_DATA_ERROR     = 10410 //数据出错
 	ERROR_STATUS_ACCOUNT_EXIST  = 10411 //账号已注册
 	ERROR_STATUS_PWD_NOT_SAM    = 10412 //密码不一致
+	ERROR_STATUS_ACCOUNT_EXPIRE = 10413 //账号已过期
 	ERROR_STATUS_SERVER_ERROR   = 10500 //服务器错误
 )
 
@@ -61,6 +63,8 @@ func errMessage(statusCode int) string {
 		return "账号已注册"
 	case ERROR_STATUS_PWD_NOT_SAM:
 		return "密码不一致"
+	case ERROR_STATUS_ACCOUNT_EXPIRE:
+		return "账号已过期"
 	}
 
 	return "未知错误"
@@ -74,6 +78,8 @@ func Response(ctx *gin.Context, statusCode int, result interface{}) {
 	response.Status = statusCode
 	response.Msg = errMessage(statusCode)
 	response.Result = result
+
+	log.Debugf("response:%+v", response)
 	ctx.JSON(http.StatusOK, response)
 }
 
