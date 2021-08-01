@@ -9,6 +9,7 @@ import (
 func ClearCache() {
 	if redisClient != nil {
 		redisClient.FlushAll()
+		return
 	}
 	redisClientCluster.FlushAll()
 }
