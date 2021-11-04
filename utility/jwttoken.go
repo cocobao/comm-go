@@ -17,7 +17,7 @@ func SetTokenRandKey(rangeKey string) {
 	TokenGen = generates.NewJWTAccessGenerate([]byte(rangeKey), jwt.SigningMethodHS512)
 }
 
-func GetAccessToken(userId string, exp time.Duration) string {
+func GetAccessToken(userId, Secret string, exp time.Duration) string {
 	m := models.NewToken()
 	m.SetClientID(userId)
 	m.SetUserID(userId)
@@ -29,7 +29,7 @@ func GetAccessToken(userId string, exp time.Duration) string {
 	access, _, err := TokenGen.Token(&oauth2.GenerateBasic{
 		Client: &models.Client{
 			ID:     userId,
-			Secret: "WS1ZI446GDHFrwwAOwYtMDD4hx1nTrBG",
+			Secret: Secret, //"WS1ZI446GDHFrwwAOwYtMDD4hx1nTrBG"
 		},
 		UserID:    userId,
 		TokenInfo: m,
