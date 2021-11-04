@@ -6,7 +6,8 @@ import (
 )
 
 var (
-	Cap      *captcha.Captcha
+	Cap *captcha.Captcha
+
 	capstore = &CaptchaStore{}
 )
 
