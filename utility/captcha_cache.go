@@ -19,8 +19,8 @@ func (c *CaptchaStore) Get(id string, clear bool) string {
 	return s
 }
 
-func (c *CaptchaStore) Set(id string, value string) {
-	service.CacheSet("captcha_"+id, value, time.Minute)
+func (c *CaptchaStore) Set(id string, value string) error {
+	return service.CacheSet("captcha_"+id, value, time.Minute)
 }
 
 func (c *CaptchaStore) Verify(id, answer string, clear bool) bool {
