@@ -10,7 +10,7 @@ func Decrypt3DES(text, key, iv string) (string, error) {
 	textData, _ := base64.StdEncoding.DecodeString(text)
 	key = Md5(key)
 	iv = Md5(iv)
-	result, err := goEncrypt.TripleDesDecrypt(textData, []byte(key)[:24], []byte(iv)[:8]...)
+	result, err := goEncrypt.TripleDesDecrypt(textData, []byte(key)[:24], []byte(iv)[:8])
 	if err != nil {
 		return "", err
 	}
@@ -22,7 +22,7 @@ func Encrypt3DES(text []byte, key, iv string) (string, error) {
 	key = Md5(key)
 	iv = Md5(iv)
 
-	result, err := goEncrypt.TripleDesEncrypt(text, []byte(key)[:24], []byte(iv)[:8]...)
+	result, err := goEncrypt.TripleDesEncrypt(text, []byte(key)[:24], []byte(iv)[:8])
 	if err != nil {
 		return "", err
 	}
