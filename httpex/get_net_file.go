@@ -14,8 +14,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cocobao/comm-go/log"
-	"github.com/cocobao/comm-go/utility"
+	"comm-go/log"
+	"comm-go/utility"
+
 	"golang.org/x/net/context/ctxhttp"
 )
 

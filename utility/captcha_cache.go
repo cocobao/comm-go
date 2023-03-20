@@ -1,9 +1,8 @@
 package utility
 
 import (
+	"comm-go/service"
 	"time"
-
-	"github.com/cocobao/comm-go/service"
 )
 
 type CaptchaStore struct {

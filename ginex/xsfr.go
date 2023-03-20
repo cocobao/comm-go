@@ -4,7 +4,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cocobao/comm-go/log"
+	"comm-go/log"
+
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"gopkg.in/oauth2.v3"

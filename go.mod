@@ -1,4 +1,4 @@
-module github.com/cocobao/comm-go
+module comm-go
 
 go 1.19
 

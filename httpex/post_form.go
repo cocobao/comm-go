@@ -10,7 +10,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/cocobao/comm-go/log"
+	"comm-go/log"
+
 	"golang.org/x/net/context/ctxhttp"
 )
 

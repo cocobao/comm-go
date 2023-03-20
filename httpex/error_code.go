@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/cocobao/comm-go/log"
+	"comm-go/log"
+
 	"github.com/gin-gonic/gin"
 )
 
