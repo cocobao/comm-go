@@ -1,15 +1,14 @@
-module comm-go
+module github.com/cocobao/comm-go
 
 go 1.19
 
 require (
 	github.com/KenmyZhang/aliyun-communicate v0.0.0-20180308134849-7997edc57454
 	github.com/afocus/captcha v0.0.0-20191010092841-4bd1f21c8868
-	github.com/cocobao/comm-go v0.0.0-20230302092909-a310d9d7d994
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/gin-gonic/gin v1.9.0
 	github.com/skip2/go-qrcode v0.0.0-20200617195104-da1b6568686e
-	go.mongodb.org/mongo-driver v1.11.2
+	go.mongodb.org/mongo-driver v1.11.3
 	golang.org/x/net v0.8.0
 	gopkg.in/oauth2.v3 v3.12.0
 	gopkg.in/redis.v5 v5.2.9
